@@ -11,30 +11,30 @@ export default function AdminLayout({ children, activeTab, setActiveTab, onLogou
     ];
 
     return (
-        <div className="min-h-screen bg-slate-50 font-sans antialiased text-slate-900">
+        <div className="min-h-screen bg-transparent font-sans antialiased text-slate-100">
             {/* Minimal Header */}
-            <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/70 backdrop-blur-md">
+            <header className="sticky top-0 z-50 w-full border-b border-slate-700 bg-slate-900/80 backdrop-blur-md">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-5xl">
                     <div className="flex items-center gap-2">
-                        <div className="bg-slate-900 text-white p-1.5 rounded-lg shadow-sm">
+                        <div className="bg-slate-700 text-white p-1.5 rounded-lg shadow-sm">
                             <Shield className="w-5 h-5" />
                         </div>
-                        <span className="font-bold text-lg tracking-tight text-slate-900">
+                        <span className="font-bold text-lg tracking-tight text-white">
                             Soulbound Skills
                         </span>
-                        <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 border border-slate-200 ml-2">
+                        <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 border border-slate-600 ml-2">
                             Institution
                         </span>
                     </div>
 
                     <div className="flex items-center gap-6">
                         <div className="hidden sm:block text-right">
-                            <div className="text-sm font-semibold text-slate-900">{adminName}</div>
+                            <div className="text-sm font-semibold text-white">{adminName}</div>
                             <div className="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Administrator</div>
                         </div>
                         <button
                             onClick={onLogout}
-                            className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all"
+                            className="p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-700 rounded-full transition-all"
                             title="Sign Out"
                         >
                             <LogOut className="w-5 h-5" />
@@ -44,7 +44,7 @@ export default function AdminLayout({ children, activeTab, setActiveTab, onLogou
             </header>
 
             {/* Sub-nav for Tabs */}
-            <div className="bg-white border-b border-slate-200">
+            <div className="bg-slate-900/50 border-b border-slate-700">
                 <div className="container mx-auto px-4 max-w-5xl">
                     <nav className="flex gap-8 overflow-x-auto no-scrollbar">
                         {tabs.map((tab) => {
@@ -57,8 +57,8 @@ export default function AdminLayout({ children, activeTab, setActiveTab, onLogou
                                     className={cn(
                                         "relative py-4 text-sm font-medium transition-colors whitespace-nowrap",
                                         isActive
-                                            ? "text-slate-900"
-                                            : "text-slate-500 hover:text-slate-800"
+                                            ? "text-white"
+                                            : "text-slate-400 hover:text-slate-200"
                                     )}
                                 >
                                     <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ export default function AdminLayout({ children, activeTab, setActiveTab, onLogou
                                     {isActive && (
                                         <motion.div
                                             layoutId="activeTabUnderline"
-                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-900 rounded-full"
+                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-white rounded-full"
                                             transition={{ type: "spring", stiffness: 500, damping: 30 }}
                                         />
                                     )}
@@ -91,9 +91,9 @@ export default function AdminLayout({ children, activeTab, setActiveTab, onLogou
                 </motion.div>
             </main>
 
-            <footer className="py-8 border-t border-slate-200 mt-auto">
+            <footer className="py-8 border-t border-slate-700 mt-auto">
                 <div className="container mx-auto px-4 max-w-5xl text-center">
-                    <p className="text-sm text-slate-400">&copy; 2026 Soulbound Skills &bull; Secure Institution Infrastructure</p>
+                    <p className="text-sm text-slate-500">&copy; 2026 Soulbound Skills &bull; Secure Institution Infrastructure</p>
                 </div>
             </footer>
         </div>

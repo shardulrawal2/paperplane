@@ -10,6 +10,7 @@ import AdminLayout from './layouts/AdminLayout';
 import AdminLogin from './pages/AdminLogin';
 import WalkthroughOverlay from './components/walkthrough/WalkthroughOverlay';
 import CommandPalette from './components/ui/CommandPalette';
+import BackgroundAnimation from './components/BackgroundAnimation';
 import { useKeyboard } from './hooks/useKeyboard';
 
 function App() {
@@ -68,13 +69,14 @@ function App() {
   if (showLogin) {
     return (
       <>
-        <Toaster position="top-right" richColors />
-        <CommandPalette
-          isOpen={showCommandPalette}
-          onClose={() => setShowCommandPalette(false)}
-          onCommand={handleCommand}
-        />
-        <div className="min-h-screen bg-slate-950 flex flex-col relative">
+        <BackgroundAnimation />
+        <div className="relative z-10 min-h-screen flex flex-col">
+          <Toaster position="top-right" richColors />
+          <CommandPalette
+            isOpen={showCommandPalette}
+            onClose={() => setShowCommandPalette(false)}
+            onCommand={handleCommand}
+          />
           <button
             onClick={() => setShowLogin(false)}
             className="absolute top-6 left-6 text-slate-400 hover:text-white flex items-center gap-2 text-sm z-50 transition-colors"
@@ -91,22 +93,25 @@ function App() {
   if (session) {
     return (
       <>
-        <Toaster position="top-right" richColors />
-        <CommandPalette
-          isOpen={showCommandPalette}
-          onClose={() => setShowCommandPalette(false)}
-          onCommand={handleCommand}
-        />
-        <AdminLayout
-          activeTab={activeAdminTab}
-          setActiveTab={setActiveAdminTab}
-          onLogout={handleLogout}
-          adminName={session.name}
-        >
-          {activeAdminTab === 'dashboard' && <AdminDashboardTab adminId={session.adminId} />}
-          {activeAdminTab === 'issue' && <AdminIssueTab adminId={session.adminId} />}
-          {activeAdminTab === 'admins' && <AdminManagementTab adminId={session.adminId} />}
-        </AdminLayout>
+        <BackgroundAnimation />
+        <div className="relative z-10 min-h-screen flex flex-col">
+          <Toaster position="top-right" richColors />
+          <CommandPalette
+            isOpen={showCommandPalette}
+            onClose={() => setShowCommandPalette(false)}
+            onCommand={handleCommand}
+          />
+          <AdminLayout
+            activeTab={activeAdminTab}
+            setActiveTab={setActiveAdminTab}
+            onLogout={handleLogout}
+            adminName={session.name}
+          >
+            {activeAdminTab === 'dashboard' && <AdminDashboardTab adminId={session.adminId} />}
+            {activeAdminTab === 'issue' && <AdminIssueTab adminId={session.adminId} />}
+            {activeAdminTab === 'admins' && <AdminManagementTab adminId={session.adminId} />}
+          </AdminLayout>
+        </div>
       </>
     );
   }
@@ -114,21 +119,24 @@ function App() {
   // 3. Public Mode
   return (
     <>
-      <Toaster position="top-right" richColors />
-      <WalkthroughOverlay />
-      <CommandPalette
-        isOpen={showCommandPalette}
-        onClose={() => setShowCommandPalette(false)}
-        onCommand={handleCommand}
-      />
-      <PublicLayout
-        activeTab={activePublicTab}
-        setActiveTab={setActivePublicTab}
-        onAdminLoginClick={() => setShowLogin(true)}
-      >
-        {activePublicTab === 'verify' && <VerifyTab />}
-        {activePublicTab === 'trust' && <TrustTab />}
-      </PublicLayout>
+      <BackgroundAnimation />
+      <div className="relative z-10 min-h-screen flex flex-col">
+        <Toaster position="top-right" richColors />
+        <WalkthroughOverlay />
+        <CommandPalette
+          isOpen={showCommandPalette}
+          onClose={() => setShowCommandPalette(false)}
+          onCommand={handleCommand}
+        />
+        <PublicLayout
+          activeTab={activePublicTab}
+          setActiveTab={setActivePublicTab}
+          onAdminLoginClick={() => setShowLogin(true)}
+        >
+          {activePublicTab === 'verify' && <VerifyTab />}
+          {activePublicTab === 'trust' && <TrustTab />}
+        </PublicLayout>
+      </div>
     </>
   );
 }

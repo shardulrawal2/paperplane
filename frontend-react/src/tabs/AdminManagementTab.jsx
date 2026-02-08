@@ -138,7 +138,7 @@ export default function AdminManagementTab({ adminId }) {
 
                 {/* Admin List */}
                 <div className="lg:col-span-2 space-y-4">
-                    <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-white flex items-center gap-2">
                         Institutional Council
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

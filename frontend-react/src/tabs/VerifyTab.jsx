@@ -45,8 +45,8 @@ export default function VerifyTab() {
     return (
         <div className="space-y-12 max-w-5xl mx-auto py-8">
             <div className="text-center space-y-2 mb-12">
-                <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Verify Integrity</h1>
-                <p className="text-slate-500 font-medium max-w-lg mx-auto"> Check the authenticity of any Soulbound Skills certificate against our immutable registry and Bitcoin anchors. </p>
+                <h1 className="text-3xl font-extrabold text-white tracking-tight">Verify Integrity</h1>
+                <p className="text-slate-300 font-medium max-w-lg mx-auto"> Check the authenticity of any Soulbound Skills certificate against our immutable registry and Bitcoin anchors. </p>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">

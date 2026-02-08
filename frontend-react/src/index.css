@@ -25,6 +25,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-slate-800 antialiased;
+    background-color: #020617;
+    @apply text-slate-200 antialiased;
   }
 }

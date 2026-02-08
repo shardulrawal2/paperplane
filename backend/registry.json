@@ -96,5 +96,43 @@
     "issuer": "hellovit",
     "type": "PDF",
     "issuedAt": "2026-02-07T16:39:57.846Z"
+  },
+  {
+    "certificateId": "d177d3bf-dd46-47fe-88f8-74abfea0b9ef",
+    "hash": "793efe88e58bc768bda0c74e457e488cfbcd6b66c8aa2d2bf8cd825871e7b081",
+    "ownerId": "td",
+    "issuer": "admin",
+    "adminId": "admin",
+    "status": "ACTIVE",
+    "type": "PDF",
+    "issuedAt": "2026-02-08T04:38:33.500Z",
+    "ots": {
+      "enabled": true,
+      "status": "PENDING"
+    },
+    "ethereum": {
+      "enabled": true,
+      "txHash": "0x31989c14ac49f310815fb4f6332a33b9e553251666c15f451e947d4723fd4947",
+      "blockNumber": 21962492
+    }
+  },
+  {
+    "certificateId": "e4630e35-2b01-4660-bfab-b4cca3ba1c5e",
+    "hash": "793efe88e58bc768bda0c74e457e488cfbcd6b66c8aa2d2bf8cd825871e7b081",
+    "ownerId": "qwerty",
+    "issuer": "admin",
+    "adminId": "admin",
+    "status": "ACTIVE",
+    "type": "PDF",
+    "issuedAt": "2026-02-08T04:44:18.785Z",
+    "ots": {
+      "enabled": true,
+      "status": "PENDING"
+    },
+    "ethereum": {
+      "enabled": true,
+      "txHash": "0x38af02375f594b63aeef48f852867393bcee1960493aa07091205b931b3799aa",
+      "blockNumber": 21077529
+    }
   }
 ]

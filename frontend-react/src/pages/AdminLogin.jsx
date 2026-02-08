@@ -45,7 +45,7 @@ export default function AdminLogin({ onLogin }) {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 font-sans">
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 font-sans bg-transparent">
             <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -57,8 +57,8 @@ export default function AdminLogin({ onLogin }) {
                     <div className="bg-slate-900 text-white p-3 rounded-2xl shadow-xl mb-4">
                         <Shield className="w-8 h-8" />
                     </div>
-                    <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Soulbound Skills</h1>
-                    <p className="text-sm text-slate-500 font-medium">Institution Management Portal</p>
+                    <h1 className="text-2xl font-bold text-white tracking-tight">Soulbound Skills</h1>
+                    <p className="text-sm text-slate-300 font-medium">Institution Management Portal</p>
                 </div>
 
                 <Card className="border-slate-200 shadow-xl bg-white border-0 ring-1 ring-slate-200">

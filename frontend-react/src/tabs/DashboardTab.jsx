@@ -52,7 +52,7 @@ export default function DashboardTab({ isAdmin }) {
         return (
             <div className="flex flex-col items-center justify-center p-10 text-center space-y-4">
                 <XCircle className="w-16 h-16 text-slate-300" />
-                <h2 className="text-2xl font-bold text-slate-900">Access Denied</h2>
+                <h2 className="text-2xl font-bold text-white">Access Denied</h2>
                 <p className="text-slate-500">You must be in Admin Mode to view the Institution Dashboard.</p>
             </div>
         );
@@ -97,7 +97,7 @@ export default function DashboardTab({ isAdmin }) {
 
             {/* Main List Info */}
             <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold tracking-tight">Issued Certificates</h2>
+                <h2 className="text-xl font-bold tracking-tight text-white">Issued Certificates</h2>
                 <Button variant="outline" size="sm" onClick={fetchCertificates}>
                     Refresh
                 </Button>

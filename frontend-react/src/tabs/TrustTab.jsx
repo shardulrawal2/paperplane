@@ -29,8 +29,8 @@ export default function TrustTab() {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="text-center space-y-4 max-w-2xl mx-auto">
-                <h2 className="text-3xl font-bold tracking-tight text-slate-900">How Soulbound Trust Works</h2>
-                <p className="text-lg text-slate-600">
+                <h2 className="text-3xl font-bold tracking-tight text-white">How Soulbound Trust Works</h2>
+                <p className="text-lg text-slate-300">
                     Our system replaces physical trust with cryptographic certainty. No third-party verification required—just math.
                 </p>
             </div>
