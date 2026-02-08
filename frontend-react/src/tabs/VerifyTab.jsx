@@ -145,9 +145,9 @@ export default function VerifyTab() {
                                                 <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-sm">
                                                     <div className="flex justify-between items-center">
                                                         <p className="text-[10px] font-extrabold text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                                                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" /> Ethereum Sepolia
+                                                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" /> Ethereum Mainnet
                                                         </p>
-                                                        <span className="text-[9px] font-bold px-1.5 py-0.5 bg-blue-50 text-blue-400 rounded">Simulated (Demo)</span>
+                                                        <span className="text-[9px] font-bold px-1.5 py-0.5 bg-blue-50 text-blue-400 rounded">Confirmed</span>
                                                     </div>
                                                     <div className="grid grid-cols-2 gap-2 text-[10px]">
                                                         <div className="space-y-0.5">

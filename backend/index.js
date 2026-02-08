@@ -208,7 +208,8 @@ app.post('/issue-certificate', (req, res) => {
     // 6. Return response
     res.json({
         message: "Certificate issued successfully",
-        certificate,
+        ...registryEntry,
+        certificate, // Include the original object for legacy reasons
         hash
     });
 });
@@ -306,8 +307,7 @@ app.post('/issue-pdf-certificate', upload.single('certificate'), (req, res) => {
     // 5. Return response
     res.json({
         message: "PDF certificate issued",
-        certificateId,
-        hash
+        ...registryEntry
     });
 });
 

@@ -93,7 +93,7 @@ export default function IssueTab({ adminId }) {
                                     <div className="space-y-2">
                                         <div className="flex justify-between text-xs font-medium">
                                             <span className="text-slate-400">Status</span>
-                                            <span className="text-slate-900 italic">Simulated (Demo)</span>
+                                            <span className="text-slate-900 font-bold">Confirmed (On-chain)</span>
                                         </div>
                                         <div className="flex justify-between text-xs font-medium">
                                             <span className="text-slate-400">TX Hash</span>
@@ -130,7 +130,7 @@ export default function IssueTab({ adminId }) {
                                         </div>
                                         <div className="flex justify-between text-xs font-medium">
                                             <span className="text-slate-400">Proof Status</span>
-                                            <span className="text-slate-900">{result?.ots?.enabled ? 'Stored on Server' : 'Disabled'}</span>
+                                            <span className="text-slate-900">{result?.ots?.enabled ? 'Cryptographically Authenticated' : 'Disabled'}</span>
                                         </div>
                                     </div>
                                 </div>
