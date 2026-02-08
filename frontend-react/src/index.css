@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@theme {
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+
+  --color-primary: #0f172a;
+  --color-primary-light: #1e293b;
+
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+
+  --color-success: #10b981;
+  --color-success-bg: #d1fae5;
+
+  --color-danger: #ef4444;
+  --color-danger-bg: #fee2e2;
+
+  --color-warning: #f59e0b;
+  --color-warning-bg: #fef3c7;
+
+  --font-sans: Inter, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-slate-800 antialiased;
+  }
+}

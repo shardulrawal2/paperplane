@@ -1,0 +1,14 @@
+{
+  "name": "soulbound-skills-backend",
+  "version": "1.0.0",
+  "description": "Backend for Soulbound Skills hackathon project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^2.0.2",
+    "uuid": "^9.0.1"
+  }
+}

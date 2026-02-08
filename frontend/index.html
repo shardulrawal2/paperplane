@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soulbound Skills - Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Soulbound Skills Demo</h1>
+
+        <!-- Section 1: Issue Certificate -->
+        <section class="card">
+            <h2>1. Issue Standard Certificate</h2>
+            <form id="issueForm">
+                <div class="form-group">
+                    <label>Skill Name:</label>
+                    <input type="text" id="skillName" value="React Basics" required>
+                </div>
+                <!-- ... other inputs ... -->
+                <div class="form-group">
+                    <label>Owner ID:</label>
+                    <input type="text" id="ownerId" value="USER_123" required>
+                </div>
+                <div class="form-group">
+                    <label>Issuer Name:</label>
+                    <input type="text" id="issuer" value="Demo Institute" required>
+                </div>
+                <button type="submit" class="btn-primary">Issue Certificate</button>
+            </form>
+        </section>
+
+        <!-- Section 1.5: Issue PDF Certificate -->
+        <section class="card">
+            <h2>1.5. Issue PDF Certificate</h2>
+            <form id="issuePdfForm">
+                <div class="form-group">
+                    <label>Select PDF:</label>
+                    <input type="file" id="pdfFile" accept=".pdf" required>
+                </div>
+                <div class="form-group">
+                    <label>Owner ID:</label>
+                    <input type="text" id="pdfOwnerId" value="USER_123" required>
+                </div>
+                <div class="form-group">
+                    <label>Issuer Name:</label>
+                    <input type="text" id="pdfIssuer" value="Demo Institute" required>
+                </div>
+                <button type="submit" class="btn-primary">Issue PDF Certificate</button>
+            </form>
+        </section>
+
+        <!-- Section 2: Certificate Display -->
+        <section class="card">
+            <h2>2. Credential Wallet</h2>
+            <p class="hint">This is your digital certificate. You can copy it or try to edit it to test security.</p>
+            <textarea id="certificateOutput" rows="8" placeholder="Issued certificate will appear here..."></textarea>
+            <div class="actions">
+                <button id="copyBtn" class="btn-secondary">Copy to Clipboard</button>
+            </div>
+        </section>
+
+        <!-- Section 3: Verify Certificate -->
+        <section class="card">
+            <h2>3. Verify Certificate</h2>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('json')">JSON Verification</button>
+                <button class="tab-btn" onclick="showTab('pdf')">PDF Verification</button>
+            </div>
+
+            <!-- JSON Verification Form -->
+            <form id="verifyForm" class="tab-content active">
+                <div class="form-group">
+                    <label>Paste Certificate JSON:</label>
+                    <textarea id="verifyJson" rows="6" placeholder="Paste certificate here to verify..."
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Claimed Owner ID:</label>
+                    <input type="text" id="verifyOwnerId" value="USER_123" required>
+                </div>
+                <button type="submit" class="btn-primary">Verify JSON Certificate</button>
+            </form>
+
+            <!-- PDF Verification Form -->
+            <form id="verifyPdfForm" class="tab-content" style="display:none;">
+                <div class="form-group">
+                    <label>Select PDF:</label>
+                    <input type="file" id="verifyPdfFile" accept=".pdf" required>
+                </div>
+                <div class="form-group">
+                    <label>Certificate ID:</label>
+                    <input type="text" id="verifyPdfCertId" placeholder="UUID from issuance" required>
+                </div>
+                <div class="form-group">
+                    <label>Claimed Owner ID:</label>
+                    <input type="text" id="verifyPdfOwnerId" value="USER_123" required>
+                </div>
+                <button type="submit" class="btn-primary">Verify PDF Certificate</button>
+            </form>
+
+            <div id="verificationResult" class="result-box hidden">
+                <h3 id="resultStatus">VALID</h3>
+                <p id="resultMessage">Certificate is authentic.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
