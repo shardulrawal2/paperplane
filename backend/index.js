@@ -27,21 +27,113 @@ app.use((req, res, next) => {
 
 // Load the registry file from disk
 const REGISTRY_PATH = path.join(__dirname, 'registry.json');
-let registry = [];
+const ADMINS_PATH = path.join(__dirname, 'admins.json');
 
+let registry = [];
+let admins = [
+    { name: "Global Admin", adminId: "admin", password: "password123" }
+];
+
+// Load registry
 try {
-    const data = fs.readFileSync(REGISTRY_PATH, 'utf8');
-    registry = JSON.parse(data);
-    console.log(`Loaded ${registry.length} certificates from registry.`);
+    if (fs.existsSync(REGISTRY_PATH)) {
+        const data = fs.readFileSync(REGISTRY_PATH, 'utf8');
+        registry = JSON.parse(data);
+        console.log(`Loaded ${registry.length} certificates from registry.`);
+    }
 } catch (err) {
     console.error('Error loading registry:', err.message);
-    // Prepare an empty registry if file doesn't exist or is invalid
     registry = [];
+}
+
+// Load admins
+try {
+    if (fs.existsSync(ADMINS_PATH)) {
+        const data = fs.readFileSync(ADMINS_PATH, 'utf8');
+        admins = JSON.parse(data);
+        console.log(`Loaded ${admins.length} administrators.`);
+    } else {
+        fs.writeFileSync(ADMINS_PATH, JSON.stringify(admins, null, 2));
+    }
+} catch (err) {
+    console.error('Error loading admins:', err.message);
 }
 
 // GET /health
 app.get('/health', (req, res) => {
     res.json({ status: "Backend running" });
+});
+
+// Admin Auth (Renamed to avoid adblockers blocking "/admin")
+app.post('/auth/institution', (req, res) => {
+    const { adminId, password } = req.body;
+    const admin = admins.find(a => a.adminId === adminId && a.password === password);
+    
+    if (admin) {
+        const { password, ...rest } = admin; // Don't return password
+        res.json({ admin: rest });
+    } else {
+        res.status(401).json({ error: "Invalid credentials" });
+    }
+});
+
+// Admin List
+app.get('/admins', (req, res) => {
+    res.json(admins.map(({ password, ...rest }) => rest));
+});
+
+// Add Admin
+app.post('/admin/add', (req, res) => {
+    const { name, newAdminId, password, requestingAdminId } = req.body;
+    if (!name || !newAdminId || !password) {
+        return res.status(400).json({ error: "Missing fields" });
+    }
+    
+    if (admins.find(a => a.adminId === newAdminId)) {
+        return res.status(400).json({ error: "Admin already exists" });
+    }
+
+    admins.push({ name, adminId: newAdminId, password });
+    fs.writeFileSync(ADMINS_PATH, JSON.stringify(admins, null, 2));
+    res.json({ message: "Admin added" });
+});
+
+// Remove Admin
+app.post('/admin/remove', (req, res) => {
+    const { targetAdminId, requestingAdminId } = req.body;
+    if (targetAdminId === requestingAdminId) {
+        return res.status(400).json({ error: "Cannot remove yourself" });
+    }
+
+    const index = admins.findIndex(a => a.adminId === targetAdminId);
+    if (index > -1) {
+        admins.splice(index, 1);
+        fs.writeFileSync(ADMINS_PATH, JSON.stringify(admins, null, 2));
+        res.json({ message: "Admin removed" });
+    } else {
+        res.status(404).json({ error: "Admin not found" });
+    }
+});
+
+// List all certificates (for Dashboard)
+app.get('/certificates', (req, res) => {
+    res.json(registry);
+});
+
+// Revoke Certificate
+app.post('/certificate/revoke', (req, res) => {
+    const { certificateId, adminId } = req.body;
+    const cert = registry.find(c => c.certificateId === certificateId);
+    
+    if (cert) {
+        cert.status = 'REVOKED';
+        cert.revokedAt = new Date().toISOString();
+        cert.revokedBy = adminId;
+        fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
+        res.json({ message: "Certificate revoked" });
+    } else {
+        res.status(404).json({ error: "Certificate not found" });
+    }
 });
 
 // Certificate Issuance Endpoint

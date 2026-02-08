@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../co
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { LayoutDashboard, Users, FileCheck, XCircle } from 'lucide-react';
+import { API_URL } from '../api';
 
 export default function DashboardTab({ isAdmin }) {
     const [certificates, setCertificates] = useState([]);
@@ -14,7 +15,7 @@ export default function DashboardTab({ isAdmin }) {
 
     const fetchCertificates = async () => {
         try {
-            const res = await fetch('http://localhost:3000/certificates');
+            const res = await fetch(`${API_URL}/certificates`);
             const data = await res.json();
             setCertificates(data);
         } catch (err) {
@@ -28,8 +29,8 @@ export default function DashboardTab({ isAdmin }) {
         if (!window.confirm("Are you sure you want to revoke this certificate? This action cannot be undone.")) return;
 
         try {
-            const res = await fetch('http://localhost:3000/revoke-certificate', {
-                method: 'PUT',
+            const res = await fetch(`${API_URL}/certificate/revoke`, {
+                method: 'POST', // Changed from PUT to POST to match our new backend endpoint
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ certificateId: id })
             });

@@ -6,6 +6,8 @@ import { Input } from '../components/ui/Input';
 import { Users, UserPlus, Trash2, Shield } from 'lucide-react';
 import { useToast } from '../hooks/useToast';
 
+import { API_URL } from '../api';
+
 export default function AdminManagementTab({ adminId }) {
     const [admins, setAdmins] = useState([]);
     const [newName, setNewName] = useState('');
@@ -16,7 +18,7 @@ export default function AdminManagementTab({ adminId }) {
 
     const fetchAdmins = async () => {
         try {
-            const res = await fetch('http://localhost:3000/admins');
+            const res = await fetch(`${API_URL}/admins`);
             const data = await res.json();
             setAdmins(data);
         } catch (err) {
@@ -33,7 +35,7 @@ export default function AdminManagementTab({ adminId }) {
         setIsLoading(true);
 
         try {
-            const res = await fetch('http://localhost:3000/admin/add', {
+            const res = await fetch(`${API_URL}/admin/add`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name: newName, newAdminId, password: newPassword, requestingAdminId: adminId })
@@ -60,7 +62,7 @@ export default function AdminManagementTab({ adminId }) {
         if (!window.confirm(`Revoke access for ${adminIdToRemove}?`)) return;
 
         try {
-            const res = await fetch('http://localhost:3000/admin/remove', {
+            const res = await fetch(`${API_URL}/admin/remove`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ targetAdminId: adminIdToRemove, requestingAdminId: adminId })

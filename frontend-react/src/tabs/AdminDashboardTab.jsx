@@ -7,6 +7,7 @@ import { Button } from '../components/ui/Button';
 import { Search, History, Shield, ExternalLink, Clock } from 'lucide-react';
 import { Input } from '../components/ui/Input';
 import { useToast } from '../hooks/useToast';
+import { API_URL } from '../api';
 
 export default function AdminDashboardTab({ adminId }) {
     const [certificates, setCertificates] = useState([]);
@@ -16,7 +17,7 @@ export default function AdminDashboardTab({ adminId }) {
 
     const fetchCertificates = async () => {
         try {
-            const res = await fetch('http://localhost:3000/certificates');
+            const res = await fetch(`${API_URL}/certificates`);
             const data = await res.json();
             const myCerts = data.filter(c => c.adminId === adminId);
             setCertificates(myCerts);
@@ -36,7 +37,7 @@ export default function AdminDashboardTab({ adminId }) {
         if (!window.confirm("Confirm certificate revocation? This process is irreversible.")) return;
 
         try {
-            const res = await fetch('http://localhost:3000/certificate/revoke', {
+            const res = await fetch(`${API_URL}/certificate/revoke`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ certificateId: id, adminId })

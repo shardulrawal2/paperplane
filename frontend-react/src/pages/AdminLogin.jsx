@@ -6,6 +6,8 @@ import { Input } from '../components/ui/Input';
 import { Lock, User, Shield } from 'lucide-react';
 import { useToast } from '../hooks/useToast';
 
+import { API_URL } from '../api';
+
 export default function AdminLogin({ onLogin }) {
     const [adminId, setAdminId] = useState('');
     const [password, setPassword] = useState('');
@@ -19,7 +21,7 @@ export default function AdminLogin({ onLogin }) {
         setIsLoading(true);
 
         try {
-            const res = await fetch('http://localhost:3000/admin/login', {
+            const res = await fetch(`${API_URL}/auth/institution`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ adminId, password })
