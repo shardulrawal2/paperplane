@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { cn } from '../../lib/utils';
 import { UploadCloud, File, X } from 'lucide-react';
 
-const FileUpload = React.forwardRef(({ className, onFileSelect, ...props }, ref) => {
+const FileUpload = React.forwardRef(({ className, innerClassName, onFileSelect, ...props }, ref) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [isDragOver, setIsDragOver] = useState(false);
 
@@ -53,9 +53,11 @@ const FileUpload = React.forwardRef(({ className, onFileSelect, ...props }, ref)
         <div className={cn("w-full", className)}>
             <div
                 className={cn(
-                    "relative flex flex-col items-center justify-center w-full h-32 rounded-lg border-2 border-dashed transition-colors cursor-pointer bg-gray-50/50 hover:bg-gray-100/50",
-                    isDragOver ? "border-primary bg-blue-50/50" : "border-slate-300",
-                    selectedFile ? "border-success bg-green-50/30" : ""
+                    "relative flex flex-col items-center justify-center w-full min-h-32 rounded-lg border-2 border-dashed transition-colors cursor-pointer",
+                    !innerClassName && "bg-gray-50/50 hover:bg-gray-100/50",
+                    !innerClassName && (isDragOver ? "border-primary bg-blue-50/50" : "border-slate-300"),
+                    !innerClassName && selectedFile && "border-success bg-green-50/30",
+                    innerClassName
                 )}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}

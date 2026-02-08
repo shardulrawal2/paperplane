@@ -71,24 +71,24 @@ export default function AdminDashboardTab({ adminId }) {
         <div className="space-y-8 max-w-5xl mx-auto">
             {/* Minimal Metrics */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Card className="border-slate-200 shadow-sm bg-white border-0 ring-1 ring-slate-200">
+                <Card className="border-0 ring-1 ring-slate-600/40 shadow-sm bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 text-slate-100">
                     <CardContent className="py-6 flex items-center justify-between">
                         <div>
                             <p className="text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-1">Total Issued</p>
-                            <p className="text-3xl font-bold text-slate-900">{stats.total}</p>
+                            <p className="text-3xl font-bold text-white">{stats.total}</p>
                         </div>
-                        <div className="p-3 bg-slate-50 rounded-xl">
+                        <div className="p-3 bg-slate-700/50 rounded-xl">
                             <History className="w-6 h-6 text-slate-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="border-slate-200 shadow-sm bg-white border-0 ring-1 ring-slate-200">
+                <Card className="border-0 ring-1 ring-slate-600/40 shadow-sm bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 text-slate-100">
                     <CardContent className="py-6 flex items-center justify-between">
                         <div>
                             <p className="text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-1">Active Credentials</p>
-                            <p className="text-3xl font-bold text-slate-900">{stats.active}</p>
+                            <p className="text-3xl font-bold text-white">{stats.active}</p>
                         </div>
-                        <div className="p-3 bg-slate-50 rounded-xl">
+                        <div className="p-3 bg-slate-700/50 rounded-xl">
                             <Shield className="w-6 h-6 text-slate-400" />
                         </div>
                     </CardContent>
@@ -107,25 +107,25 @@ export default function AdminDashboardTab({ adminId }) {
                             placeholder="Filter by ID or Owner"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="pl-10 h-10 text-sm bg-white border-slate-200 focus:ring-slate-900/5 focus:border-slate-300"
+                            className="pl-10 h-10 text-sm bg-gradient-to-r from-slate-800/60 to-slate-900/70 border-slate-600/50 focus:border-slate-500 focus:ring-slate-500/30 text-white placeholder:text-slate-500"
                         />
                     </div>
                 </div>
 
-                <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div className="bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 border border-slate-600/40 rounded-xl overflow-hidden shadow-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full text-sm text-left border-collapse">
                             <thead>
-                                <tr className="bg-slate-50 border-b border-slate-200">
-                                    <th className="px-6 py-4 font-bold text-slate-500 text-[10px] uppercase tracking-wider">Identity</th>
-                                    <th className="px-6 py-4 font-bold text-slate-500 text-[10px] uppercase tracking-wider text-center">Date</th>
-                                    <th className="px-6 py-4 font-bold text-slate-500 text-[10px] uppercase tracking-wider text-center">Status</th>
-                                    <th className="px-6 py-4 font-bold text-slate-500 text-[10px] uppercase tracking-wider text-center">Bitcoin Anchor</th>
-                                    <th className="px-6 py-4 font-bold text-slate-500 text-[10px] uppercase tracking-wider text-center">Ethereum Anchor</th>
-                                    <th className="px-6 py-4 font-bold text-slate-500 text-[10px] uppercase tracking-wider text-right">Action</th>
+                                <tr className="bg-slate-800/60 border-b border-slate-600/50">
+                                    <th className="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-wider">Identity</th>
+                                    <th className="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-wider text-center">Date</th>
+                                    <th className="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-wider text-center">Status</th>
+                                    <th className="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-wider text-center">Bitcoin Anchor</th>
+                                    <th className="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-wider text-center">Ethereum Anchor</th>
+                                    <th className="px-6 py-4 font-bold text-slate-400 text-[10px] uppercase tracking-wider text-right">Action</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-100">
+                            <tbody className="divide-y divide-slate-600/40">
                                 {filtered.length === 0 ? (
                                     <tr>
                                         <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
@@ -134,12 +134,12 @@ export default function AdminDashboardTab({ adminId }) {
                                     </tr>
                                 ) : (
                                     filtered.map((cert) => (
-                                        <tr key={cert.certificateId} className="hover:bg-slate-50/50 transition-colors">
+                                        <tr key={cert.certificateId} className="hover:bg-slate-700/30 transition-colors">
                                             <td className="px-6 py-5">
-                                                <div className="font-semibold text-slate-900">{cert.ownerId}</div>
+                                                <div className="font-semibold text-slate-100">{cert.ownerId}</div>
                                                 <div className="text-[10px] font-mono text-slate-400 mt-0.5">{cert.certificateId}</div>
                                             </td>
-                                            <td className="px-6 py-5 text-center text-slate-600 font-medium">
+                                            <td className="px-6 py-5 text-center text-slate-300 font-medium">
                                                 {new Date(cert.issuedAt).toLocaleDateString('en-US', {
                                                     month: 'short',
                                                     day: 'numeric',
@@ -154,16 +154,16 @@ export default function AdminDashboardTab({ adminId }) {
                                             <td className="px-6 py-5 text-center">
                                                 {cert.ots?.enabled ? (
                                                     <div className="flex flex-col items-center gap-1 group">
-                                                        <div className="flex items-center gap-1.5 px-2 py-1 bg-slate-50 rounded-md border border-slate-100">
+                                                        <div className="flex items-center gap-1.5 px-2 py-1 bg-slate-700/50 rounded-md border border-slate-600/50">
                                                             {cert.ots.status === 'ANCHORED' ? (
                                                                 <>
                                                                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                                                                    <span className="text-[10px] font-bold text-slate-700">ANCHORED</span>
+                                                                    <span className="text-[10px] font-bold text-slate-100">ANCHORED</span>
                                                                 </>
                                                             ) : (
                                                                 <>
                                                                     <Clock className="w-2.5 h-2.5 text-amber-500 animate-spin-slow" />
-                                                                    <span className="text-[10px] font-bold text-slate-700">PENDING</span>
+                                                                    <span className="text-[10px] font-bold text-slate-100">PENDING</span>
                                                                 </>
                                                             )}
                                                         </div>
@@ -178,9 +178,9 @@ export default function AdminDashboardTab({ adminId }) {
                                             <td className="px-6 py-5 text-center">
                                                 {cert.ethereum?.enabled ? (
                                                     <div className="flex flex-col items-center gap-1 group">
-                                                        <div className="flex items-center gap-1.5 px-2 py-1 bg-slate-50 rounded-md border border-slate-100">
+                                                        <div className="flex items-center gap-1.5 px-2 py-1 bg-slate-700/50 rounded-md border border-slate-600/50">
                                                             <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-                                                            <span className="text-[10px] font-bold text-slate-700">CONFIRMED</span>
+                                                            <span className="text-[10px] font-bold text-slate-100">CONFIRMED</span>
                                                         </div>
                                                         <Tooltip content="Ethereum Anchoring (Sepolia Testnet - Simulated)">
                                                             <span className="text-[9px] text-slate-400 underline decoration-slate-200 cursor-help">Simulated (Demo)</span>
@@ -194,7 +194,7 @@ export default function AdminDashboardTab({ adminId }) {
                                                 {cert.status === 'ACTIVE' ? (
                                                     <button
                                                         onClick={() => handleRevoke(cert.certificateId)}
-                                                        className="text-[11px] font-bold text-red-500 hover:text-red-700 px-3 py-1.5 rounded bg-red-50 hover:bg-red-100 transition-all"
+                                                        className="text-[11px] font-bold text-red-400 hover:text-red-300 px-3 py-1.5 rounded bg-red-900/40 hover:bg-red-800/50 border border-red-700/50 transition-all"
                                                     >
                                                         REVOKE
                                                     </button>

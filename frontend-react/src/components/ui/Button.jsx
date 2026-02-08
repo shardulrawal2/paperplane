@@ -5,10 +5,10 @@ import { Loader2 } from 'lucide-react';
 const Button = React.forwardRef(({ className, variant = 'default', size = 'default', isLoading, children, ...props }, ref) => {
     const variants = {
         default: 'bg-primary text-white hover:bg-primary/90 shadow-sm',
-        outline: 'border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-100',
-        ghost: 'hover:bg-slate-800 text-slate-400 hover:text-slate-100',
+        outline: 'border border-slate-200 bg-white hover:bg-slate-100 text-slate-900',
+        ghost: 'hover:bg-slate-100 text-slate-700',
         destructive: 'bg-danger text-white hover:bg-danger/90',
-        secondary: 'bg-slate-800 text-slate-100 hover:bg-slate-700',
+        secondary: 'bg-slate-100 text-slate-900 hover:bg-slate-200',
     };
 
     const sizes = {

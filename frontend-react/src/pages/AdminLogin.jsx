@@ -61,31 +61,31 @@ export default function AdminLogin({ onLogin }) {
                     <p className="text-sm text-slate-300 font-medium">Institution Management Portal</p>
                 </div>
 
-                <Card className="border-slate-200 shadow-xl bg-white border-0 ring-1 ring-slate-200">
-                    <CardHeader className="text-center space-y-1 pb-6">
-                        <CardTitle className="text-xl font-bold text-slate-900">Sign In</CardTitle>
-                        <CardDescription className="text-slate-500 text-sm">
+                <Card className="border-0 ring-1 ring-slate-600/40 shadow-xl bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 text-slate-100">
+                    <CardHeader className="text-center space-y-1 pb-6 border-b border-slate-600/40">
+                        <CardTitle className="text-xl font-bold text-white">Sign In</CardTitle>
+                        <CardDescription className="text-slate-400 text-sm">
                             Enter your administrator credentials
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="space-y-1.5">
-                                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Institution ID</label>
+                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Institution ID</label>
                                 <div className="relative">
                                     <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                                     <Input
                                         value={adminId}
                                         onChange={(e) => setAdminId(e.target.value)}
                                         placeholder="INST_XXX"
-                                        className="pl-10 h-11 bg-slate-50 border-transparent focus:bg-white focus:ring-slate-900/5 focus:border-slate-300 transition-all font-mono text-sm"
+                                        className="pl-10 h-11 bg-gradient-to-r from-slate-800/60 to-slate-900/70 border-slate-600/50 focus:border-slate-500 focus:ring-slate-500/30 transition-all font-mono text-sm text-white placeholder:text-slate-500"
                                         required
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-1.5">
-                                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Secure Key</label>
+                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Secure Key</label>
                                 <div className="relative">
                                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                                     <Input
@@ -93,7 +93,7 @@ export default function AdminLogin({ onLogin }) {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="••••••••"
-                                        className="pl-10 h-11 bg-slate-50 border-transparent focus:bg-white focus:ring-slate-900/5 focus:border-slate-300 transition-all text-sm"
+                                        className="pl-10 h-11 bg-gradient-to-r from-slate-800/60 to-slate-900/70 border-slate-600/50 focus:border-slate-500 focus:ring-slate-500/30 transition-all text-sm text-white placeholder:text-slate-500"
                                         required
                                     />
                                 </div>

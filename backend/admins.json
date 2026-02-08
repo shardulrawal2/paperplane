@@ -3,5 +3,10 @@
     "name": "Global Admin",
     "adminId": "admin",
     "password": "password123"
+  },
+  {
+    "name": "VIT VELLORE",
+    "adminId": "VIT",
+    "password": "qwerty123"
   }
 ]

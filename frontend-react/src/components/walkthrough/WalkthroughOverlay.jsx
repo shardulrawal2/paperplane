@@ -82,27 +82,27 @@ export default function WalkthroughOverlay() {
                     initial={{ scale: 0.9, y: 20 }}
                     animate={{ scale: 1, y: 0 }}
                     exit={{ scale: 0.9, y: 20 }}
-                    className="relative z-10 bg-slate-900 rounded-xl shadow-2xl p-8 max-w-md w-full mx-4 border border-slate-800"
+                    className="relative z-10 bg-gradient-to-br from-slate-800/95 via-slate-800/90 to-slate-900/95 rounded-xl shadow-2xl p-8 max-w-md w-full mx-4 border border-slate-600/50 text-slate-100"
                 >
                     {/* Close Button */}
                     <button
                         onClick={handleSkip}
-                        className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+                        className="absolute top-4 right-4 text-slate-400 hover:text-slate-200 transition-colors"
                     >
                         <X className="w-5 h-5" />
                     </button>
 
                     {/* Content */}
                     <div className="space-y-4">
-                        <div className="flex items-center gap-2 text-sm text-slate-500">
+                        <div className="flex items-center gap-2 text-sm text-slate-400">
                             <span>Step {currentStep + 1} of {walkthroughSteps.length}</span>
                         </div>
 
-                        <h2 className="text-2xl font-bold text-slate-100">
+                        <h2 className="text-2xl font-bold text-white">
                             {step.title}
                         </h2>
 
-                        <p className="text-slate-400 leading-relaxed">
+                        <p className="text-slate-300 leading-relaxed">
                             {step.description}
                         </p>
 
@@ -112,10 +112,10 @@ export default function WalkthroughOverlay() {
                                 <div
                                     key={index}
                                     className={`h-1.5 rounded-full transition-all ${index === currentStep
-                                        ? 'w-8 bg-blue-500'
-                                        : index < currentStep
-                                            ? 'w-1.5 bg-blue-400/50'
-                                            : 'w-1.5 bg-slate-800'
+                                            ? 'w-8 bg-blue-500'
+                                            : index < currentStep
+                                                ? 'w-1.5 bg-blue-400'
+                                                : 'w-1.5 bg-slate-600'
                                         }`}
                                 />
                             ))}

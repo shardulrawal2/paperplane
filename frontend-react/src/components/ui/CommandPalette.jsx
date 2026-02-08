@@ -61,11 +61,11 @@ export default function CommandPalette({ isOpen, onClose, onCommand }) {
                         animate={{ scale: 1, y: 0 }}
                         exit={{ scale: 0.95, y: -20 }}
                         onClick={(e) => e.stopPropagation()}
-                        className="relative z-10 bg-slate-900 rounded-xl shadow-2xl w-full max-w-lg mx-4 overflow-hidden border border-slate-800"
+                        className="relative z-10 bg-gradient-to-br from-slate-800/95 via-slate-800/90 to-slate-900/95 rounded-lg shadow-2xl w-full max-w-lg mx-4 overflow-hidden border border-slate-600/50 text-slate-100"
                     >
                         {/* Search Input */}
-                        <div className="flex items-center gap-3 px-4 py-4 border-b border-slate-800">
-                            <Search className="w-5 h-5 text-slate-500" />
+                        <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-600/50">
+                            <Search className="w-5 h-5 text-slate-400" />
                             <input
                                 type="text"
                                 placeholder="Type a command..."
@@ -76,7 +76,7 @@ export default function CommandPalette({ isOpen, onClose, onCommand }) {
                             />
                             <button
                                 onClick={onClose}
-                                className="text-slate-400 hover:text-slate-600 transition-colors"
+                                className="text-slate-400 hover:text-slate-200 transition-colors"
                             >
                                 <X className="w-4 h-4" />
                             </button>
@@ -85,7 +85,7 @@ export default function CommandPalette({ isOpen, onClose, onCommand }) {
                         {/* Commands List */}
                         <div className="max-h-[300px] overflow-y-auto">
                             {filteredCommands.length === 0 ? (
-                                <div className="p-8 text-center text-slate-500 text-sm">
+                                <div className="p-8 text-center text-slate-400 text-sm">
                                     No commands found
                                 </div>
                             ) : (
@@ -95,12 +95,12 @@ export default function CommandPalette({ isOpen, onClose, onCommand }) {
                                         <button
                                             key={cmd.id}
                                             onClick={() => handleCommand(cmd.action)}
-                                            className="w-full flex items-center gap-3 px-4 py-4 hover:bg-slate-800/50 transition-colors text-left"
+                                            className="w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-700/50 transition-colors text-left"
                                         >
                                             <Icon className="w-5 h-5 text-slate-400" />
-                                            <span className="flex-1 text-slate-200">{cmd.label}</span>
+                                            <span className="flex-1 text-slate-100">{cmd.label}</span>
                                             {cmd.adminOnly && (
-                                                <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                                                <span className="text-xs text-slate-400 bg-slate-700/50 px-2 py-0.5 rounded border border-slate-600/50">
                                                     Admin
                                                 </span>
                                             )}
@@ -111,11 +111,11 @@ export default function CommandPalette({ isOpen, onClose, onCommand }) {
                         </div>
 
                         {/* Footer */}
-                        <div className="px-4 py-3 bg-slate-950/50 border-t border-slate-800 text-xs text-slate-500 flex items-center justify-between">
+                        <div className="px-4 py-2 bg-slate-800/60 border-t border-slate-600/50 text-xs text-slate-400 flex items-center justify-between">
                             <span>Press ESC to close</span>
                             <span className="flex items-center gap-1">
-                                <kbd className="px-1.5 py-0.5 bg-slate-900 border border-slate-700 rounded text-xs text-slate-300">⌘</kbd>
-                                <kbd className="px-1.5 py-0.5 bg-slate-900 border border-slate-700 rounded text-xs text-slate-300">K</kbd>
+                                <kbd className="px-1.5 py-0.5 bg-slate-700/50 border border-slate-600 rounded text-xs text-slate-300">⌘</kbd>
+                                <kbd className="px-1.5 py-0.5 bg-slate-700/50 border border-slate-600 rounded text-xs text-slate-300">K</kbd>
                                 <span className="ml-1">to open</span>
                             </span>
                         </div>

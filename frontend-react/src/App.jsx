@@ -95,7 +95,7 @@ function App() {
       <>
         <BackgroundAnimation />
         <div className="relative z-10 min-h-screen flex flex-col">
-          <Toaster position="top-right" richColors theme="dark" />
+          <Toaster position="top-right" richColors />
           <CommandPalette
             isOpen={showCommandPalette}
             onClose={() => setShowCommandPalette(false)}
@@ -121,7 +121,7 @@ function App() {
     <>
       <BackgroundAnimation />
       <div className="relative z-10 min-h-screen flex flex-col">
-        <Toaster position="top-right" richColors theme="dark" />
+        <Toaster position="top-right" richColors />
         <WalkthroughOverlay />
         <CommandPalette
           isOpen={showCommandPalette}

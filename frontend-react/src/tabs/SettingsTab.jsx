@@ -34,15 +34,15 @@ export default function SettingsTab({ isAdmin, setIsAdmin }) {
         <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
 
             {/* Role Management Section */}
-            <Card className={cn("border-l-4 transition-all", isAdmin ? "border-l-primary bg-slate-50" : "border-l-slate-300")}>
+            <Card className={cn("border-l-4 border-0 ring-1 ring-slate-600/40 transition-all bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 text-slate-100", isAdmin ? "border-l-primary" : "border-l-slate-500")}>
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <div className="space-y-1">
-                            <CardTitle className="text-xl flex items-center gap-2">
-                                {isAdmin ? <ShieldAlert className="w-5 h-5 text-primary" /> : <User className="w-5 h-5 text-slate-500" />}
+                            <CardTitle className="text-xl flex items-center gap-2 text-white">
+                                {isAdmin ? <ShieldAlert className="w-5 h-5 text-blue-400" /> : <User className="w-5 h-5 text-slate-400" />}
                                 Active Role: {isAdmin ? "Administrator" : "Standard User"}
                             </CardTitle>
-                            <CardDescription>
+                            <CardDescription className="text-slate-400">
                                 Toggle your role to experience the platform as different users.
                             </CardDescription>
                         </div>
@@ -52,10 +52,10 @@ export default function SettingsTab({ isAdmin, setIsAdmin }) {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <div className="flex items-center gap-4 p-4 bg-white rounded-lg border border-slate-200">
+                    <div className="flex items-center gap-4 p-4 bg-gradient-to-br from-slate-800/50 to-slate-900/60 rounded-lg border border-slate-600/50">
                         <div className="flex-1">
-                            <p className="text-sm font-medium text-slate-900">Current Permissions</p>
-                            <p className="text-sm text-slate-500 mt-1">
+                            <p className="text-sm font-medium text-slate-100">Current Permissions</p>
+                            <p className="text-sm text-slate-400 mt-1">
                                 {isAdmin
                                     ? "Full access: Issue, Verify, View Dashboard, Revoke Credentials."
                                     : "Restricted access: Verify Credentials only (Issuance is visible for demo)."}
@@ -73,21 +73,21 @@ export default function SettingsTab({ isAdmin, setIsAdmin }) {
 
             {/* Admin-Only Danger Zone */}
             {isAdmin && (
-                <Card className="border-danger/30 bg-danger/5">
+                <Card className="border-danger/30 ring-1 ring-slate-600/40 bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 border-red-900/40">
                     <CardHeader>
-                        <CardTitle className="text-danger flex items-center gap-2">
+                        <CardTitle className="text-red-400 flex items-center gap-2">
                             <LogOut className="w-5 h-5" />
                             Demo Controls
                         </CardTitle>
-                        <CardDescription className="text-danger/80">
+                        <CardDescription className="text-slate-400">
                             Actions to manage the demo environment. Warning: destructive.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="flex items-center justify-between bg-white/50 p-4 rounded-lg border border-danger/10">
+                        <div className="flex items-center justify-between bg-gradient-to-br from-slate-800/50 to-slate-900/60 p-4 rounded-lg border border-slate-600/50">
                             <div className="space-y-1">
-                                <p className="font-medium text-slate-900">Reset System Data</p>
-                                <p className="text-xs text-slate-500">Clears all issued certificates and resets the registry.</p>
+                                <p className="font-medium text-slate-100">Reset System Data</p>
+                                <p className="text-xs text-slate-400">Clears all issued certificates and resets the registry.</p>
                             </div>
                             <Button
                                 variant="destructive"

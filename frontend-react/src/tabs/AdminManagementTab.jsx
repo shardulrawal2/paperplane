@@ -84,9 +84,9 @@ export default function AdminManagementTab({ adminId }) {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Add Admin Form */}
                 <div className="lg:col-span-1">
-                    <Card className="border-0 ring-1 ring-slate-200 shadow-xl bg-white sticky top-24">
-                        <CardHeader className="pb-4 border-b border-slate-50">
-                            <CardTitle className="text-lg font-bold flex items-center gap-2">
+                    <Card className="border-0 ring-1 ring-slate-600/40 shadow-xl bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 sticky top-24 text-slate-100">
+                        <CardHeader className="pb-4 border-b border-slate-600/40">
+                            <CardTitle className="text-lg font-bold flex items-center gap-2 text-white">
                                 <UserPlus className="w-4 h-4" />
                                 Onboard Admin
                             </CardTitle>
@@ -94,33 +94,33 @@ export default function AdminManagementTab({ adminId }) {
                         <CardContent className="pt-6">
                             <form onSubmit={handleAddAdmin} className="space-y-4">
                                 <div className="space-y-1.5">
-                                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
+                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Full Name</label>
                                     <Input
                                         placeholder="e.g. Dr. Jane Smith"
                                         value={newName}
                                         onChange={(e) => setNewName(e.target.value)}
-                                        className="h-10 bg-slate-50 border-transparent focus:bg-white focus:ring-slate-900/5 focus:border-slate-300 text-sm"
+                                        className="h-10 bg-gradient-to-r from-slate-800/60 to-slate-900/70 border-slate-600/50 focus:border-slate-500 focus:ring-slate-500/30 text-sm text-white placeholder:text-slate-500"
                                         required
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">ID</label>
+                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">ID</label>
                                     <Input
                                         placeholder="e.g. INST_003"
                                         value={newAdminId}
                                         onChange={(e) => setNewAdminId(e.target.value)}
-                                        className="h-10 bg-slate-50 border-transparent focus:bg-white focus:ring-slate-900/5 focus:border-slate-300 font-mono text-sm"
+                                        className="h-10 bg-gradient-to-r from-slate-800/60 to-slate-900/70 border-slate-600/50 focus:border-slate-500 focus:ring-slate-500/30 font-mono text-sm text-white placeholder:text-slate-500"
                                         required
                                     />
                                 </div>
                                 <div className="space-y-1.5">
-                                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Passkey</label>
+                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Passkey</label>
                                     <Input
                                         type="password"
                                         placeholder="••••••••"
                                         value={newPassword}
                                         onChange={(e) => setNewPassword(e.target.value)}
-                                        className="h-10 bg-slate-50 border-transparent focus:bg-white focus:ring-slate-900/5 focus:border-slate-300 text-sm"
+                                        className="h-10 bg-gradient-to-r from-slate-800/60 to-slate-900/70 border-slate-600/50 focus:border-slate-500 focus:ring-slate-500/30 text-sm text-white placeholder:text-slate-500"
                                         required
                                     />
                                 </div>
@@ -143,20 +143,20 @@ export default function AdminManagementTab({ adminId }) {
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {admins.map((admin) => (
-                            <Card key={admin.adminId} className="border-0 ring-1 ring-slate-200 shadow-sm bg-white overflow-hidden group">
+                            <Card key={admin.adminId} className="border-0 ring-1 ring-slate-600/40 shadow-sm bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 overflow-hidden group text-slate-100">
                                 <CardContent className="p-5 flex items-center justify-between">
                                     <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-slate-100 rounded-lg group-hover:bg-slate-900 group-hover:text-white transition-colors">
+                                        <div className="p-2 bg-slate-700/50 rounded-lg group-hover:bg-slate-700 group-hover:text-white transition-colors">
                                             <Shield className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <p className="font-bold text-slate-900">{admin.name}</p>
+                                            <p className="font-bold text-slate-100">{admin.name}</p>
                                             <p className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">{admin.adminId}</p>
                                         </div>
                                     </div>
                                     <button
                                         onClick={() => handleRemoveAdmin(admin.adminId)}
-                                        className="p-2 text-slate-300 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                                        className="p-2 text-slate-300 hover:text-red-400 hover:bg-red-900/40 rounded-lg transition-all border border-transparent hover:border-red-700/50"
                                     >
                                         <Trash2 className="w-4 h-4" />
                                     </button>

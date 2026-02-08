@@ -37,15 +37,15 @@ export default function TrustTab() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {steps.map((step, i) => (
-                    <Card key={i} className="border-slate-200 hover:shadow-md transition-shadow">
+                    <Card key={i} className="border-0 ring-1 ring-slate-600/40 bg-gradient-to-br from-slate-800/80 via-slate-800/70 to-slate-900/90 hover:ring-slate-500/50 transition-all text-slate-100">
                         <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2">
-                            <div className="p-2 w-fit rounded-lg bg-primary/10 text-primary">
+                            <div className="p-2 w-fit rounded-lg bg-slate-700/50 text-slate-200">
                                 <step.icon className="w-6 h-6" />
                             </div>
-                            <CardTitle className="text-xl">{step.title}</CardTitle>
+                            <CardTitle className="text-xl text-white">{step.title}</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <CardDescription className="text-base leading-relaxed">
+                            <CardDescription className="text-base leading-relaxed text-slate-300">
                                 {step.desc}
                             </CardDescription>
                         </CardContent>
@@ -53,7 +53,7 @@ export default function TrustTab() {
                 ))}
             </div>
 
-            <div className="bg-slate-900 text-white rounded-2xl p-8 md:p-12 text-center space-y-6 shadow-xl">
+            <div className="bg-gradient-to-br from-slate-800/90 via-slate-900/90 to-slate-950 text-white rounded-2xl p-8 md:p-12 text-center space-y-6 shadow-xl border border-slate-600/40">
                 <h3 className="text-2xl font-bold">Ready to issue your first certificate?</h3>
                 <p className="text-slate-300 max-w-xl mx-auto">
                     Start issuing tamper-proof credentials in seconds. No blockchain knowledge required.

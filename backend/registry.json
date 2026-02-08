@@ -103,7 +103,7 @@
     "ownerId": "td",
     "issuer": "admin",
     "adminId": "admin",
-    "status": "ACTIVE",
+    "status": "REVOKED",
     "type": "PDF",
     "issuedAt": "2026-02-08T04:38:33.500Z",
     "ots": {
@@ -114,7 +114,9 @@
       "enabled": true,
       "txHash": "0x31989c14ac49f310815fb4f6332a33b9e553251666c15f451e947d4723fd4947",
       "blockNumber": 21962492
-    }
+    },
+    "revokedAt": "2026-02-08T05:18:52.363Z",
+    "revokedBy": "admin"
   },
   {
     "certificateId": "e4630e35-2b01-4660-bfab-b4cca3ba1c5e",
@@ -122,7 +124,7 @@
     "ownerId": "qwerty",
     "issuer": "admin",
     "adminId": "admin",
-    "status": "ACTIVE",
+    "status": "REVOKED",
     "type": "PDF",
     "issuedAt": "2026-02-08T04:44:18.785Z",
     "ots": {
@@ -133,6 +135,27 @@
       "enabled": true,
       "txHash": "0x38af02375f594b63aeef48f852867393bcee1960493aa07091205b931b3799aa",
       "blockNumber": 21077529
+    },
+    "revokedAt": "2026-02-08T05:18:53.874Z",
+    "revokedBy": "admin"
+  },
+  {
+    "certificateId": "db094702-deae-4b74-93fe-8e7e2493dffe",
+    "hash": "8f4d17fc966134e13c8e2083c1a171fc7719b682620d9e8ef74e51440f288ac6",
+    "ownerId": "qwerty",
+    "issuer": "admin",
+    "adminId": "admin",
+    "status": "ACTIVE",
+    "type": "PDF",
+    "issuedAt": "2026-02-08T05:19:48.844Z",
+    "ots": {
+      "enabled": true,
+      "status": "PENDING"
+    },
+    "ethereum": {
+      "enabled": true,
+      "txHash": "0xa09d75f06d2264165deebe3a419148460164f89651bc59eb0f19d4325fd495fa",
+      "blockNumber": 21329305
     }
   }
 ]
