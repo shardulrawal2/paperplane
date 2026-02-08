@@ -6,6 +6,7 @@ import { FileUpload } from '../components/ui/FileUpload';
 import { issueCertificate } from '../api';
 import { CheckCircle, Copy, FileText, Hash } from 'lucide-react';
 import { cn } from '../lib/utils';
+import CertificatePreviewCard from '../components/ui/CertificatePreviewCard';
 
 export default function IssueTab() {
     const [file, setFile] = useState(null);
@@ -113,6 +114,7 @@ export default function IssueTab() {
                         Certificate Document (PDF)
                     </label>
                     <FileUpload onFileSelect={setFile} />
+                    {file && <CertificatePreviewCard file={file} className="mt-2" />}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

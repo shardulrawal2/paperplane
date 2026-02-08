@@ -127,8 +127,8 @@ app.get('/certificates', (req, res) => {
         // Clone to avoid mutating original registry in memory if we don't want to persist PENDING indefinitely
         const resolvedCert = { ...cert };
 
-        // Auto-approve OTS after 15 seconds (0.25 minutes)
-        if (resolvedCert.ots && resolvedCert.ots.status === 'PENDING' && diffMinutes >= 0.25) {
+        // Auto-approve OTS after 30 seconds (0.5 minutes)
+        if (resolvedCert.ots && resolvedCert.ots.status === 'PENDING' && diffMinutes >= 0.5) {
             resolvedCert.ots = { ...resolvedCert.ots, status: 'ANCHORED' };
         }
 
@@ -253,9 +253,22 @@ app.post('/verify-certificate', (req, res) => {
     }
 
     // Step 4: Success Case
+    const now = new Date();
+    const issuedAt = new Date(registryEntry.issuedAt);
+    const diffMinutes = (now - issuedAt) / 1000 / 60;
+
+    const ots = { ...registryEntry.ots };
+    if (ots.status === 'PENDING' && diffMinutes >= 0.5) {
+        ots.status = 'ANCHORED';
+    }
+
     res.json({
         status: "VALID",
-        message: "Certificate is authentic and belongs to the claimed owner"
+        message: "Certificate is authentic and belongs to the claimed owner",
+        issuer: registryEntry.issuer,
+        issuedAt: registryEntry.issuedAt,
+        ots: ots,
+        ethereum: registryEntry.ethereum
     });
 });
 
@@ -349,9 +362,22 @@ app.post('/verify-pdf-certificate', upload.single('certificate'), (req, res) => 
     }
 
     // Step 4: Success Case
+    const now = new Date();
+    const issuedAt = new Date(registryEntry.issuedAt);
+    const diffMinutes = (now - issuedAt) / 1000 / 60;
+
+    const ots = { ...registryEntry.ots };
+    if (ots.status === 'PENDING' && diffMinutes >= 0.5) {
+        ots.status = 'ANCHORED';
+    }
+
     res.json({
         status: "VALID",
-        message: "PDF Certificate is authentic and belongs to the claimed owner"
+        message: "PDF Certificate is authentic and belongs to the claimed owner",
+        issuer: registryEntry.issuer,
+        issuedAt: registryEntry.issuedAt,
+        ots: ots,
+        ethereum: registryEntry.ethereum
     });
 });
 

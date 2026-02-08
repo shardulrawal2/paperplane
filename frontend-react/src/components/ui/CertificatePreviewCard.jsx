@@ -1,6 +1,6 @@
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { FileText, CheckCircle, Upload } from 'lucide-react';
+import { FileText, CheckCircle, Eye } from 'lucide-react';
 
 export default function CertificatePreviewCard({ file, issuer = null, className }) {
     if (!file) return null;
@@ -33,16 +33,24 @@ export default function CertificatePreviewCard({ file, issuer = null, className 
                             </p>
                         </div>
 
-                        <div className="flex-shrink-0">
+                        <div className="flex-shrink-0 flex items-center gap-2">
+                            <button
+                                onClick={() => {
+                                    const url = URL.createObjectURL(file);
+                                    window.open(url, '_blank');
+                                }}
+                                className="p-1.5 hover:bg-white rounded-md transition-colors border border-transparent hover:border-slate-200 text-slate-400 hover:text-slate-600"
+                                title="Preview Document"
+                            >
+                                <Eye className="w-4 h-4" />
+                            </button>
                             <CheckCircle className="w-5 h-5 text-green-600" />
                         </div>
                     </div>
 
                     {issuer && (
-                        <div className="mt-2 pt-2 border-t border-slate-200">
-                            <p className="text-xs text-slate-600">
-                                <span className="font-medium">Issuer:</span> {issuer}
-                            </p>
+                        <div className="mt-2 pt-2 border-t border-slate-200 text-xs text-slate-600">
+                            <span className="font-medium">Issuer:</span> {issuer}
                         </div>
                     )}
                 </div>

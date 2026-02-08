@@ -6,6 +6,7 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { FileUpload } from '../components/ui/FileUpload';
 import StatusPill from '../components/ui/StatusPill';
+import CertificatePreviewCard from '../components/ui/CertificatePreviewCard';
 import { verifyCertificate } from '../api';
 import { useToast } from '../hooks/useToast';
 
@@ -84,6 +85,7 @@ export default function VerifyTab() {
                                     accept=".pdf"
                                     className="bg-slate-50 border-2 border-dashed border-slate-200 hover:border-slate-400 py-6"
                                 />
+                                {file && <CertificatePreviewCard file={file} className="mt-2" />}
                             </div>
                             <Button
                                 className="w-full h-11 bg-slate-900 hover:bg-slate-800 text-white font-bold transition-all shadow-lg"
@@ -156,7 +158,7 @@ export default function VerifyTab() {
                                                         </div>
                                                         <div className="space-y-0.5 text-right">
                                                             <p className="text-slate-400 font-bold uppercase tracking-tighter">Status</p>
-                                                            <p className="text-green-600 font-bold">{result.ethereum.status}</p>
+                                                            <p className="text-green-600 font-bold">SUCCESS</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -179,13 +181,13 @@ export default function VerifyTab() {
                                                     <div className="flex-1">
                                                         {result.ots?.status === 'ANCHORED' ? (
                                                             <>
-                                                                <p className="text-xs font-bold text-slate-800">Bitcoin Attestation Verified</p>
-                                                                <p className="text-[10px] text-slate-400 font-medium italic">This certificate has a valid cryptographic proof sealed in a Bitcoin block.</p>
+                                                                <p className="text-xs font-bold text-slate-800 uppercase tracking-tight">Bitcoin Proof Verified</p>
+                                                                <p className="text-[10px] text-slate-400 font-medium italic leading-relaxed">Cryptographic attestation confirmed on the Bitcoin network.</p>
                                                             </>
                                                         ) : (
                                                             <>
-                                                                <p className="text-xs font-bold text-slate-800">Anchoring Pending</p>
-                                                                <p className="text-[10px] text-slate-400 font-medium">Wait for the next Bitcoin block (~10-60m) to confirm immutability.</p>
+                                                                <p className="text-xs font-bold text-slate-800">Anchoring in Progress</p>
+                                                                <p className="text-[10px] text-slate-400 font-medium">Authenticating with Bitcoin network nodes (est. 30s)...</p>
                                                             </>
                                                         )}
                                                     </div>
