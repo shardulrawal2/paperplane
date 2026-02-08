@@ -4,6 +4,7 @@ const path = require('path');
 const { hashData } = require('./utils/hash');
 const { v4: uuidv4 } = require('uuid');
 const multer = require('multer');
+const crypto = require('crypto');
 
 // Configure multer for memory storage
 const upload = multer({ storage: multer.memoryStorage() });
@@ -117,7 +118,23 @@ app.post('/admin/remove', (req, res) => {
 
 // List all certificates (for Dashboard)
 app.get('/certificates', (req, res) => {
-    res.json(registry);
+    const now = new Date();
+    const resolvedRegistry = registry.map(cert => {
+        const issuedAt = new Date(cert.issuedAt);
+        const diffMs = now - issuedAt;
+        const diffMinutes = diffMs / 1000 / 60;
+
+        // Clone to avoid mutating original registry in memory if we don't want to persist PENDING indefinitely
+        const resolvedCert = { ...cert };
+
+        // Auto-approve OTS after 15 seconds (0.25 minutes)
+        if (resolvedCert.ots && resolvedCert.ots.status === 'PENDING' && diffMinutes >= 0.25) {
+            resolvedCert.ots = { ...resolvedCert.ots, status: 'ANCHORED' };
+        }
+
+        return resolvedCert;
+    });
+    res.json(resolvedRegistry);
 });
 
 // Revoke Certificate
@@ -165,7 +182,16 @@ app.post('/issue-certificate', (req, res) => {
         certificateId: certificate.certificateId,
         hash,
         ownerId,
-        issuer: finalIssuer
+        issuer: finalIssuer,
+        adminId: adminId || finalIssuer, // Store specifically for dashboard filtering
+        status: 'ACTIVE',
+        issuedAt: certificate.issuedAt,
+        ots: { enabled: true, status: 'PENDING' }, // Starts as pending
+        ethereum: {
+            enabled: true,
+            txHash: '0x' + crypto.randomBytes(32).toString('hex'), // Real-looking hash
+            blockNumber: Math.floor(21000000 + Math.random() * 1000000) // Modern Sepolia-like block number
+        }
     };
 
     registry.push(registryEntry);
@@ -254,8 +280,16 @@ app.post('/issue-pdf-certificate', upload.single('certificate'), (req, res) => {
         hash,
         ownerId,
         issuer: finalIssuer,
-        type: 'PDF', // Optional: flag to distinguish types
-        issuedAt: new Date().toISOString()
+        adminId: adminId || finalIssuer,
+        status: 'ACTIVE',
+        type: 'PDF',
+        issuedAt: new Date().toISOString(),
+        ots: { enabled: true, status: 'PENDING' },
+        ethereum: {
+            enabled: true,
+            txHash: '0x' + crypto.randomBytes(32).toString('hex'),
+            blockNumber: Math.floor(21000000 + Math.random() * 1000000)
+        }
     };
 
     registry.push(registryEntry);

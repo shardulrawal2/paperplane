@@ -31,6 +31,8 @@ export default function AdminDashboardTab({ adminId }) {
 
     useEffect(() => {
         fetchCertificates();
+        const interval = setInterval(fetchCertificates, 3000); // Polling every 3 seconds
+        return () => clearInterval(interval);
     }, [adminId]);
 
     const handleRevoke = async (id) => {
