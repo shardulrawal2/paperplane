@@ -68,7 +68,7 @@ app.get('/health', (req, res) => {
 app.post('/auth/institution', (req, res) => {
     const { adminId, password } = req.body;
     const admin = admins.find(a => a.adminId === adminId && a.password === password);
-    
+
     if (admin) {
         const { password, ...rest } = admin; // Don't return password
         res.json({ admin: rest });
@@ -88,7 +88,7 @@ app.post('/admin/add', (req, res) => {
     if (!name || !newAdminId || !password) {
         return res.status(400).json({ error: "Missing fields" });
     }
-    
+
     if (admins.find(a => a.adminId === newAdminId)) {
         return res.status(400).json({ error: "Admin already exists" });
     }
@@ -124,7 +124,7 @@ app.get('/certificates', (req, res) => {
 app.post('/certificate/revoke', (req, res) => {
     const { certificateId, adminId } = req.body;
     const cert = registry.find(c => c.certificateId === certificateId);
-    
+
     if (cert) {
         cert.status = 'REVOKED';
         cert.revokedAt = new Date().toISOString();
@@ -138,18 +138,19 @@ app.post('/certificate/revoke', (req, res) => {
 
 // Certificate Issuance Endpoint
 app.post('/issue-certificate', (req, res) => {
-    const { skillName, ownerId, issuer } = req.body;
+    const { skillName, ownerId, issuer, adminId } = req.body;
+    const finalIssuer = issuer || adminId;
 
     // 1. Validate request body
-    if (!skillName || !ownerId || !issuer) {
-        return res.status(400).json({ error: 'Missing required fields: skillName, ownerId, issuer' });
+    if (!skillName || !ownerId || !finalIssuer) {
+        return res.status(400).json({ error: 'Missing required fields: skillName, ownerId, issuer/adminId' });
     }
 
     // 2. Create certificate object
     const certificate = {
         certificateId: uuidv4(),
         skillName,
-        issuer,
+        issuer: finalIssuer,
         ownerId,
         issuedAt: new Date().toISOString()
     };
@@ -164,7 +165,7 @@ app.post('/issue-certificate', (req, res) => {
         certificateId: certificate.certificateId,
         hash,
         ownerId,
-        issuer
+        issuer: finalIssuer
     };
 
     registry.push(registryEntry);
@@ -233,11 +234,12 @@ app.post('/verify-certificate', (req, res) => {
 
 // PDF Certificate Issuance Endpoint
 app.post('/issue-pdf-certificate', upload.single('certificate'), (req, res) => {
-    const { ownerId, issuer } = req.body;
+    const { ownerId, issuer, adminId } = req.body;
     const file = req.file;
+    const finalIssuer = issuer || adminId;
 
-    if (!file || !ownerId || !issuer) {
-        return res.status(400).json({ error: 'Missing required fields: certificate (file), ownerId, issuer' });
+    if (!file || !ownerId || !finalIssuer) {
+        return res.status(400).json({ error: 'Missing required fields: certificate (file), ownerId, issuer/adminId' });
     }
 
     // 1. Generate certificateId
@@ -251,7 +253,7 @@ app.post('/issue-pdf-certificate', upload.single('certificate'), (req, res) => {
         certificateId,
         hash,
         ownerId,
-        issuer,
+        issuer: finalIssuer,
         type: 'PDF', // Optional: flag to distinguish types
         issuedAt: new Date().toISOString()
     };
