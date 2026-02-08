@@ -82,7 +82,7 @@ export default function WalkthroughOverlay() {
                     initial={{ scale: 0.9, y: 20 }}
                     animate={{ scale: 1, y: 0 }}
                     exit={{ scale: 0.9, y: 20 }}
-                    className="relative z-10 bg-white rounded-xl shadow-2xl p-8 max-w-md w-full mx-4"
+                    className="relative z-10 bg-slate-900 rounded-xl shadow-2xl p-8 max-w-md w-full mx-4 border border-slate-800"
                 >
                     {/* Close Button */}
                     <button
@@ -98,11 +98,11 @@ export default function WalkthroughOverlay() {
                             <span>Step {currentStep + 1} of {walkthroughSteps.length}</span>
                         </div>
 
-                        <h2 className="text-2xl font-bold text-slate-900">
+                        <h2 className="text-2xl font-bold text-slate-100">
                             {step.title}
                         </h2>
 
-                        <p className="text-slate-600 leading-relaxed">
+                        <p className="text-slate-400 leading-relaxed">
                             {step.description}
                         </p>
 
@@ -112,10 +112,10 @@ export default function WalkthroughOverlay() {
                                 <div
                                     key={index}
                                     className={`h-1.5 rounded-full transition-all ${index === currentStep
-                                            ? 'w-8 bg-blue-600'
-                                            : index < currentStep
-                                                ? 'w-1.5 bg-blue-400'
-                                                : 'w-1.5 bg-slate-200'
+                                        ? 'w-8 bg-blue-500'
+                                        : index < currentStep
+                                            ? 'w-1.5 bg-blue-400/50'
+                                            : 'w-1.5 bg-slate-800'
                                         }`}
                                 />
                             ))}

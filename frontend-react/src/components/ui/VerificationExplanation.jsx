@@ -38,27 +38,27 @@ export default function VerificationExplanation({ result, claimedOwnerId }) {
 
     return (
         <div className="mt-6 space-y-3 animate-in fade-in slide-in-from-top-2">
-            <h3 className="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-2">Verification Breakdown</h3>
+            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Verification Breakdown</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {steps.map((step) => (
                     <div
                         key={step.id}
                         className={cn(
                             "flex items-start p-3 rounded-lg border",
-                            step.status === 'success' ? "bg-green-50 border-green-100" : "bg-red-50 border-red-100"
+                            step.status === 'success' ? "bg-green-500/5 border-green-500/10" : "bg-red-500/5 border-red-500/10"
                         )}
                     >
                         <div className={cn(
                             "mt-0.5 mr-3 p-1 rounded-full",
-                            step.status === 'success' ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
+                            step.status === 'success' ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"
                         )}>
                             {step.status === 'success' ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
                         </div>
                         <div>
-                            <p className={cn("text-sm font-medium", step.status === 'success' ? "text-green-900" : "text-red-900")}>
+                            <p className={cn("text-sm font-medium", step.status === 'success' ? "text-green-400" : "text-red-400")}>
                                 {step.label}
                             </p>
-                            <p className={cn("text-xs mt-0.5", step.status === 'success' ? "text-green-700" : "text-red-700")}>
+                            <p className={cn("text-xs mt-0.5", step.status === 'success' ? "text-green-500/70" : "text-red-500/70")}>
                                 {step.text}
                             </p>
                         </div>

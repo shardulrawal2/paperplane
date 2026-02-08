@@ -55,11 +55,11 @@ export default function IssueTab() {
         return (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="text-center space-y-2">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 text-green-500 mb-4">
                         <CheckCircle className="w-8 h-8" />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-900">Certificate Issued!</h2>
-                    <p className="text-slate-500">The certificate has been cryptographically secured.</p>
+                    <h2 className="text-2xl font-bold text-slate-100">Certificate Issued!</h2>
+                    <p className="text-slate-400">The certificate has been cryptographically secured.</p>
                 </div>
 
                 <Card className="border-green-200 bg-green-50/30">
@@ -67,7 +67,7 @@ export default function IssueTab() {
                         <div className="space-y-1">
                             <label className="text-xs font-medium text-slate-500 uppercase tracking-wider">Certificate ID</label>
                             <div className="flex items-center space-x-2">
-                                <code className="flex-1 bg-white border border-slate-200 p-2 rounded text-sm font-mono text-slate-700 truncate">
+                                <code className="flex-1 bg-slate-950 border border-slate-800 p-2 rounded text-sm font-mono text-slate-300 truncate">
                                     {result.certificateId}
                                 </code>
                                 <Button variant="outline" size="icon" onClick={() => copyToClipboard(result.certificateId)}>
@@ -79,7 +79,7 @@ export default function IssueTab() {
                         <div className="space-y-1">
                             <label className="text-xs font-medium text-slate-500 uppercase tracking-wider">Content Hash (SHA-256)</label>
                             <div className="flex items-center space-x-2">
-                                <div className="flex-1 bg-white border border-slate-200 p-2 rounded text-xs font-mono text-slate-500 truncate">
+                                <div className="flex-1 bg-slate-950 border border-slate-800 p-2 rounded text-xs font-mono text-slate-400 truncate">
                                     <Hash className="w-3 h-3 inline mr-1" />
                                     {result.hash}
                                 </div>
